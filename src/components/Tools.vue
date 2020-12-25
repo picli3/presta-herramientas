@@ -7,18 +7,15 @@
           v-for="(herramienta, index) in herramientas"
           :key="index"
         >
-          <v-card v-if="herramienta.cantidad>0">
+          <v-card :disabled="herramienta.cantidad===0">
             <div class="d-flex flex-no-wrap justify-space-between">
               <div>
                 <v-card-title class="headline">
                   {{ herramienta.nombre }}</v-card-title
                 >
                 <v-card-subtitle>Disponibles:</v-card-subtitle>
-
-                <v-card-text class="display-2 ml-5 font-weight-black">
-                  {{ herramienta.cantidad }}
+                <v-card-text class="display-1 ml-5 font-weight-black" v-text="herramienta.cantidad>0?herramienta.cantidad :'Agotado'">
                 </v-card-text>
-
                 <v-card-actions class="ml-2 mt-3">
                   <v-btn
                     class="ml-2 mt-5"

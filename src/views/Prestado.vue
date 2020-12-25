@@ -45,6 +45,7 @@
                       <v-list-item-title
                         v-text="pretamo.nombre"
                       ></v-list-item-title>
+                      <v-list-item-title class="text--disabled">{{ pretamo.fecha }}</v-list-item-title>
                     </v-list-item-content>
 
                     <v-list-item-avatar>
@@ -64,6 +65,7 @@
 import { mapState, mapActions } from "vuex";
 import Buscar from "../components/Buscar";
 
+
 export default {
   name: "Prestado",
   components: { Buscar },
@@ -71,9 +73,16 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(["leerPrestamo", "leerUsuario", "devolverPrestamo","devolverHerramienta"]),
+    ...mapActions([
+      "leerPrestamo",
+      "leerUsuario",
+      "devolverPrestamo",
+      "devolverHerramienta",
+    ]),
   },
   created() {
+    
+
     this.leerPrestamo();
     this.leerUsuario();
   },

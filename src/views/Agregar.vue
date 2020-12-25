@@ -1,5 +1,6 @@
 <template>
   <v-form v-model="valid">
+    <p>{{valid}}</p>
     <v-container>
       <v-row>
         <v-col cols="12" md="4">
@@ -7,6 +8,7 @@
             v-model="herramienta.nombre"
             label="Nombre"
             placeholder="Alicate de corte"
+             :rules="[rules.required, rules.min]"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -15,19 +17,21 @@
           <v-text-field
             v-model="herramienta.cantidad"
             label="Cantidad"
+            type="number"
             placeholder="5"
+            :rules="[rules.required]"
           ></v-text-field>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" md="4">
           <v-file-input
-            :rules="rules"
             accept="image/png, image/jpeg, image/bmp"
             placeholder="Seleccione una herramienta"
             prepend-icon="mdi-camera"
             label="Imagen"
             @change="examinar($event)"
+            :rules="[rules.required]"
           ></v-file-input>
         </v-col>
       </v-row>
@@ -44,7 +48,7 @@
 
       <v-row>
         <v-col cols="12" md="4">
-          <v-btn block large color="success" @click="agregar()">Guardar</v-btn>
+          <v-btn block large color="success" @click="agregar()" :disabled="valid==false">Guardar</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -55,7 +59,6 @@ import { mapActions } from "vuex";
 export default {
   data: () => ({
     valid: true,
-
     urlTemp: "",
     herramienta: {
       nombre: "",
@@ -65,12 +68,12 @@ export default {
       imagen: "",
       idh:""
     },
-    rules: [
-      (value) =>
-        !value ||
-        value.size < 2000000 ||
-        "Avatar size should be less than 2 MB!",
-    ],
+     rules: {
+          required: value => !!value || 'Required.',
+          min: v => v.length >= 8 || 'Min 8 characters',
+          emailMatch: () => (`The email and password you entered don't match`),
+        },
+
   }),
   methods: {
     examinar($event) {

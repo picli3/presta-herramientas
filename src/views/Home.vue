@@ -1,14 +1,5 @@
 <template>
   <v-container>
-    <v-card class="mx-auto" outlined>
-      <v-list-item three-line>
-        <v-list-item-content>
-          <v-list-item-title class="headline mb-1 text-center">
-            Herramientas Disponibles
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-card>
     <Buscar texto="Buscar" />
     <Tools />
     <v-fab-transition v-if="usuario.admin==1">
@@ -25,8 +16,6 @@
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </v-fab-transition>
-
-
   </v-container>
 </template>
 

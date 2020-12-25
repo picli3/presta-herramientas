@@ -4,6 +4,7 @@ import { auth, db, storage } from '@/firebase'
 import router from '@/router'
 
 import Swal from 'sweetalert2'
+import moment from "moment";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -138,12 +139,14 @@ export default new Vuex.Store({
     },
     async leerPrestamo({ commit }) {
       try {
+        moment.locale('es');
         const dat = [];
         const datos = await db.collection("prestamos").orderBy("fecha", "desc").get()
 
         for (const doc of datos.docs) {
           let prestamo = doc.data()
           prestamo.id = doc.id
+          prestamo.fecha=moment(prestamo.fecha).fromNow()
           dat.push(prestamo);
         }
         commit('nuevoPrestamo', dat)
