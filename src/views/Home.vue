@@ -1,18 +1,54 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-card class="mx-auto" outlined>
+      <v-list-item three-line>
+        <v-list-item-content>
+          <v-list-item-title class="headline mb-1 text-center">
+            Herramientas Disponibles
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-card>
+    <Buscar texto="Buscar" />
+    <Tools />
+    <v-fab-transition v-if="usuario.admin==1">
+      <v-btn
+        v-show="!hidden"
+        color="success"
+        fab
+        dark
+        absolute
+        top
+        left
+        to="/agregar"
+      >
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+    </v-fab-transition>
+
+
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Buscar from "../components/Buscar";
+import Tools from "../components/Tools";
+import { mapState } from "vuex";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
-  }
-}
+    Buscar,
+    Tools,
+  },
+  data() {
+    return {
+      hidden: false,
+    };
+  },
+  computed: {
+    ...mapState(['usuario'])
+  },
+
+};
 </script>
