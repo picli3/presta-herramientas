@@ -74,7 +74,7 @@ export default new Vuex.Store({
     async leerHerramienta({ commit }) {
       try {
         const dat = [];
-        const datos = await db.collection("herramientas").orderBy("fecha", "desc")
+        const datos = await db.collection("herramientas").orderBy("nombre", "asc")
         const allComtactos = await datos.get();
 
         for (const doc of allComtactos.docs) {
@@ -146,7 +146,7 @@ export default new Vuex.Store({
         for (const doc of datos.docs) {
           let prestamo = doc.data()
           prestamo.id = doc.id
-          prestamo.fecha=moment(prestamo.fecha).fromNow()
+          prestamo.fecha = moment(prestamo.fecha).fromNow()
           dat.push(prestamo);
         }
         commit('nuevoPrestamo', dat)

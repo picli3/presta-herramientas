@@ -1,6 +1,11 @@
 <template>
   <v-container>
-    <h1 class="display-2 text-center">Herramienta Sense</h1>
+    
+   
+        <img src="../assets/logo.png" width="100%"/>
+    
+   
+
     <v-divider class="mt-2"></v-divider>
     <v-form v-model="valid">
       <v-row>
@@ -30,15 +35,13 @@
         </v-col>
       </v-row>
 
-      <v-row >
+      <v-row>
         <v-col cols="12" md="3">
           <v-btn block color="error" large @click="google">
             <v-icon left>mdi-google</v-icon>Continuar con Google</v-btn
           ></v-col
         >
       </v-row>
-
-
     </v-form>
 
     <v-container>
