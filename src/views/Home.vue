@@ -22,6 +22,7 @@
 <script>
 import Buscar from "../components/Buscar";
 import Tools from "../components/Tools";
+import enviarEmail from "../components/enviarEmail";
 import { mapState } from "vuex";
 
 export default {
@@ -29,6 +30,7 @@ export default {
   components: {
     Buscar,
     Tools,
+    enviarEmail
   },
   data() {
     return {

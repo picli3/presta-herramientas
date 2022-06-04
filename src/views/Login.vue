@@ -1,9 +1,9 @@
 <template>
   <v-container>
     
-   
+    <v-col cols="12" md="3">
         <img src="../assets/logo.png" width="100%"/>
-    
+     </v-col>
    
 
     <v-divider class="mt-2"></v-divider>
